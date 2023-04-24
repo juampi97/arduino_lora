@@ -16,6 +16,6 @@ Contiene el codigo utilizado para recibir en Arduino utilizando un módulo RFM95
 
 #### Links descarga programa utilizados
 
-*[Hercules] (https://www.hw-group.com/software/hercules-setup-utility)
-*[Putty] (https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html)
+* [Hercules](https://www.hw-group.com/software/hercules-setup-utility)
+* [Putty](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html)
 
