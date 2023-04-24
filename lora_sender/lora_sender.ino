@@ -1,11 +1,12 @@
 #include <SPI.h>
 #include <LoRa.h>
 
+#define loraFrequency 915000000
+
 int counter = 0;
 int Senderled = 5;
 int Errorled = 6;
 int deviceID = 12345;
-int loraFrequency = 915E6;
 
 void setup() {
   Serial.begin(9600);
