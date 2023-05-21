@@ -92,10 +92,14 @@ void setup() {
     digitalWrite(Errorled, HIGH);
     delay(2000);
     while (1);
+  }else {
+      Serial.println("Starting LoRa Ok!");
   }
+
 }
 
 void loop() {
   send_lora();
   recive_lora();
+  delay(500);
 }
