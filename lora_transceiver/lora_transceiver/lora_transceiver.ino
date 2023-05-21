@@ -1,3 +1,4 @@
+#include <Wire.h>
 #include <SPI.h>
 #include <LoRa.h>
 
@@ -89,8 +90,6 @@ void setup() {
 
   if (!LoRa.begin(loraFrequency)) {
     Serial.println("Starting LoRa failed!");
-    digitalWrite(Errorled, HIGH);
-    delay(2000);
     while (1);
   }else {
       Serial.println("Starting LoRa Ok!");
@@ -101,5 +100,5 @@ void setup() {
 void loop() {
   send_lora();
   recive_lora();
-  delay(500);
+//  delay(500);
 }
