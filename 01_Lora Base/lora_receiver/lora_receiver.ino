@@ -24,7 +24,7 @@ void loop() {
       Serial.print((char)LoRa.read());
     }
 
-    Serial.print("' with RSSI ");
+    Serial.print(" - with RSSI ");
     Serial.println(LoRa.packetRssi());
     delay(1000);
   }
