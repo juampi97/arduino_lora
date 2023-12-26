@@ -7,7 +7,7 @@ int counter = 0;
 int deviceID = 1;
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
   while (!Serial);
 
   Serial.println("LoRa Sender started");
@@ -24,10 +24,11 @@ void loop() {
   Serial.println(counter);
     
   LoRa.beginPacket();
-  LoRa.setTxPower(17);
+  LoRa.setTxPower(6);
   LoRa.setSyncWord(0x34);
   
   LoRa.print("$GNRMC,152621.00,A,3436.699107,S,05823.418194,W,000.1,,231123,,,A,V*16");
+  LoRa.endPacket();
 
   counter++;
   delay(2000);

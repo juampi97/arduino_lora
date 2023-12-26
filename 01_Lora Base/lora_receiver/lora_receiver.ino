@@ -1,16 +1,15 @@
-#include <Wire.h> 
+#include <Wire.h>
 #include <SPI.h>
 #include <LoRa.h>
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
-
-  Serial.println("LoRa Receiver");
 
   if (!LoRa.begin(915E6)) {
-  Serial.println("Starting LoRa failed!");
+    Serial.println("Starting LoRa failed!");
     while (1);
+  } else {
+    Serial.println("LoRa Receiver");
   }
 }
 

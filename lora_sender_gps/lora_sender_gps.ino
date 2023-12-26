@@ -45,7 +45,7 @@ void loop() {
   calcularTiempo();
   if (flag_tiempo_muestreo) {
     digitalWrite(led, !digitalRead(led));
-    
+
     while (gps.available() > 0) {
       char caracter = gps.read();
       if (caracter == '$') {
@@ -56,7 +56,7 @@ void loop() {
         tramaGPS += caracter;
       }
     }
-    
+
 
     if (counter > 11) {
       counter = 0;
@@ -80,16 +80,19 @@ void calcularTiempo() {
 void analizarTrama() {
   if (tramaGPS[0] == '$' && tramaGPS[1] == 'G' && tramaGPS[2] == 'N' && tramaGPS[3] == 'R' && tramaGPS[4] == 'M' && tramaGPS[5] == 'C') {
     trama_a_enviar = tramaGPS;
-    
+
     Serial.println("Sending packet: ");
     Serial.println(contador);
     Serial.println(trama_a_enviar);
 
-    LoRa.beginPacket();
-    LoRa.setTxPower(17);
-    LoRa.setSyncWord(0x34);
-
-    LoRa.print(trama_a_enviar);
+    // for (int i = 0; i < 10; i++) {
+      LoRa.beginPacket();
+      LoRa.setTxPower(15);
+      LoRa.setSyncWord(0x34);
+      LoRa.print(trama_a_enviar);
+      LoRa.endPacket();
+    //   delay(100);
+    // }
 
     contador++;
   }
