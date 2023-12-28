@@ -3,7 +3,11 @@
 #include <LoRa.h>
 
 #define led 13
-#define loraFrequency 915000000
+
+// Variables modulo lora
+const int ss = 10;
+const int reset = 9;
+const int dio0 = 2;
 
 // Variables GPS
 
@@ -31,14 +35,17 @@ void setup() {
   Serial.begin(115200);
   gps.begin(9600);
 
-  if (!LoRa.begin(915E6)) {
-    Serial.println("Starting LoRa failed!");
-    delay(2000);
-    while (1)
-      ;
-  } else {
-    Serial.println("LoRa Sender started");
-  }
+  LoRa.begin(915E6);
+  LoRa.setPins(ss, reset, dio0);
+  Serial.println("LoRa Sender started");
+
+  // if (!LoRa.begin(915E6)) {
+  //   Serial.println("Starting LoRa failed!");
+  //   delay(2000);
+  //   while (1)
+  //     ;
+  // } else {
+  // }
 }
 
 void loop() {
@@ -56,12 +63,9 @@ void loop() {
         tramaGPS += caracter;
       }
     }
-
-
     if (counter > 11) {
       counter = 0;
       flag_tiempo_muestreo = false;
-      sendMessageLora();
     }
   }
 }
@@ -85,18 +89,10 @@ void analizarTrama() {
     Serial.println(contador);
     Serial.println(trama_a_enviar);
 
-    // for (int i = 0; i < 10; i++) {
-      LoRa.beginPacket();
-      LoRa.setTxPower(15);
-      LoRa.setSyncWord(0x34);
-      LoRa.print(trama_a_enviar);
-      LoRa.endPacket();
-    //   delay(100);
-    // }
-
+    LoRa.beginPacket();
+    LoRa.setTxPower(10);
+    LoRa.print(trama_a_enviar);
+    LoRa.endPacket();
     contador++;
   }
-}
-
-void sendMessageLora() {
 }
