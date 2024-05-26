@@ -1,6 +1,7 @@
 String inputString = "";
 bool stringComplete = false;
 
+
 void setup() {
   Serial.begin(9600);
   // 200 bytes de reserva para el inputString
@@ -8,7 +9,7 @@ void setup() {
 }
 
 void loop() {
-  sendSerialString();
+  analizarString();
 }
 
 void serialEvent() {
@@ -21,9 +22,9 @@ void serialEvent() {
   }
 }
 
-void AnalizarString() {
+void analizarString() {
   if(stringComplete) {
-    Serial.println(inputString);
+    Serial.println("Input: " + inputString);
     inputString = "";
     stringComplete = false;
   }

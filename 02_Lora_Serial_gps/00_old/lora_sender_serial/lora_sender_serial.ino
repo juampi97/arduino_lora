@@ -22,6 +22,7 @@ void setup() {
     delay(2000);
     while (1);
   }
+  LoRa.setTxPower(17);
 }
 
 void loop() {
@@ -30,14 +31,8 @@ void loop() {
   Serial.println(counter);
     
   LoRa.beginPacket();
-  LoRa.setTxPower(17);
   LoRa.setSyncWord(0x34);
-  
   LoRa.print(mensaje);
-  // LoRa.print("<1> Hello From LoRA ");
-
-  delay(1000);
-
   LoRa.endPacket();
   
   counter++;

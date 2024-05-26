@@ -11,7 +11,7 @@ void setup() {
   Serial.begin(9600);
   LoRa.begin(915E6);
   LoRa.setPins(ss, reset, dio0);
-  
+  LoRa.setTxPower(10);
   Serial.println("LoRa Sender");
   
 }

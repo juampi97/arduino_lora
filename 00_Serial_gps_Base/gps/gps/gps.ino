@@ -2,7 +2,7 @@
 
 #define led 13
 
-SoftwareSerial gps(10, 11);  //RX TX
+SoftwareSerial gps(6, 7);  //RX TX
 unsigned long time = 0;
 unsigned long last_time = 0;
 bool flag_tiempo_muestreo;
@@ -39,7 +39,6 @@ void loop() {
         tramaGPS += caracter;
       }
     }
-    
     if (counter > 11) {
       counter = 0;
       flag_tiempo_muestreo = false;
@@ -59,8 +58,8 @@ void calcularTiempo() {
 }
 
 void analizarTrama() {
-  if(tramaGPS[0] == '$' && tramaGPS[1] == 'G' && tramaGPS[2] == 'N' && tramaGPS[3] == 'R' && tramaGPS[4] == 'M' && tramaGPS[5] == 'C' ) {
-     trama_a_enviar = tramaGPS;
-     Serial.println(trama_a_enviar);
+  if (tramaGPS[0] == '$' && tramaGPS[1] == 'G' && tramaGPS[2] == 'N' && tramaGPS[3] == 'R' && tramaGPS[4] == 'M' && tramaGPS[5] == 'C') {
+    trama_a_enviar = tramaGPS;
+    Serial.println(trama_a_enviar);
   }
 }
