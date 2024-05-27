@@ -2,15 +2,25 @@
 
 ---
 
-#### Carpeta *lora_sender*
+#### Carpeta *Serial_gps_base*
 
-Contiene el codigo utilizado para enviar mensajes desde un Arduino utilizando el módulo RFM95 y el protocolo Lora.
+Contiene el codigo enviar y recibir datos por el puerto serie de Arduino, y el codigo para leer los datos del gps e identificar la trama requerida.
 
 ---
 
-#### Carpeta *lora_receiver*
+#### Carpeta *Lora_Base*
 
-Contiene el codigo utilizado para recibir en Arduino utilizando un módulo RFM95 y el protocolo Lora.
+Contiene el codigo utilizado para enviar y recibir datos utilizando un módulo RFM95 y el protocolo Lora.
+
+---
+#### Carpeta *Lora_Serial_gps*
+
+Contiene el codigo utilizado para enviar la reconocer y enviar trama del modulo gps en Arduino utilizando un módulo RFM95 y el protocolo Lora. Y otro codigo para enviar mensajes recibidos por el puerto serie.
+
+---
+#### Carpeta *Software_reset*
+
+Contiene el codigo utilizado para hacer un reset por software del Arduino.
 
 ---
 
