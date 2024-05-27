@@ -2,7 +2,6 @@
 
 #define led 13
 
-SoftwareSerial gps(6, 7);  //RX TX
 unsigned long time = 0;
 unsigned long last_time = 0;
 bool flag_tiempo_muestreo;
@@ -10,7 +9,7 @@ unsigned long counter = 0;
 
 char cadena[100];
 
-String tramaGPS;
+String tramaSerial;
 
 //
 String sub_trama = "";
@@ -20,8 +19,7 @@ void setup() {
 
   pinMode(led, OUTPUT);
 
-  Serial.begin(115200);
-  gps.begin(9600);
+  Serial.begin(9600);
 }
 
 void loop() {
@@ -29,14 +27,14 @@ void loop() {
   if (flag_tiempo_muestreo) {
     digitalWrite(led, !digitalRead(led));
 
-    while (gps.available() > 0) {
-      char caracter = gps.read();
+    while (Serial.available() > 0) {
+      char caracter = Serial.read();
       if (caracter == '$') {
         analizarTrama();
-        tramaGPS = "$";
+        tramaSerial = "$";
       } else if (caracter == '\n') {
       } else {
-        tramaGPS += caracter;
+        tramaSerial += caracter;
       }
     }
     if (counter > 11) {
@@ -58,8 +56,8 @@ void calcularTiempo() {
 }
 
 void analizarTrama() {
-  if (tramaGPS[0] == '$' && tramaGPS[1] == 'G' && tramaGPS[2] == 'N' && tramaGPS[3] == 'R' && tramaGPS[4] == 'M' && tramaGPS[5] == 'C') {
-    trama_a_enviar = tramaGPS;
+  if (tramaSerial[0] == '$' && tramaSerial[1] == 'G' && tramaSerial[2] == 'N' && tramaSerial[3] == 'R' && tramaSerial[4] == 'M' && tramaSerial[5] == 'C') {
+    trama_a_enviar = tramaSerial;
     Serial.println(trama_a_enviar);
   }
 }
