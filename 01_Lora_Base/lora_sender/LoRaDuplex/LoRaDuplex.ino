@@ -14,7 +14,7 @@ long lastSendTime = 0;        // last send time
 int interval = 5000;          // interval between sends
 
 void setup() {
-  Serial.begin(9600);                   // initialize serial
+  Serial.begin(115200);                   // initialize serial
   while (!Serial);
 
   Serial.println("LoRa Duplex");

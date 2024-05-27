@@ -1,7 +1,7 @@
 #include <SPI.h>  // include libraries
 #include <LoRa.h>
-
 #include <SoftwareSerial.h>
+#include <ArduinoJson.h>
 
 #define led 13
 
@@ -13,11 +13,11 @@ const int irqPin = 2;    // change for your board; must be a hardware interrupt 
 
 String outgoing;  // outgoing message
 
-byte msgCount = 0;         // count of outgoing messages
-byte localAddress = 0xBB;  // address of this device
-byte destination = 0xFF;   // destination to send to
-long lastSendTime = 0;     // last send time
-int interval = 5000;       // interval between sends
+byte msgCount = 0;            // count of outgoing messages
+byte localAddress = 0xBB;     // address of this device
+byte destination = 0xFF;      // destination to send to
+long lastSendTime = 0;        // last send time
+int interval = 5000;          // interval between sends
 
 unsigned long time = 0;
 unsigned long last_time = 0;
@@ -29,6 +29,8 @@ char cadena[100];
 String tramaGPS;
 String sub_trama = "";
 String trama_a_enviar = "";
+
+String message;
 
 void setup() {
   Serial.begin(115200);  // initialize serial
@@ -52,25 +54,12 @@ void setup() {
 }
 
 void loop() {
-  // Actualizo variable gps
-  while (gps.available() > 0) {
-    char caracter = gps.read();
-    if (caracter == '$') {
-      analizarTrama();
-      tramaGPS = "$";
-    } else if (caracter == '\n') {
-    } else {
-      tramaGPS += caracter;
-    }
-  }
-
-  //Envio mensaje lora
   if (millis() - lastSendTime > interval) {
-    String message = trama_a_enviar;
+    String message = "HeLoRa World!";   // send a message
     sendMessage(message);
     Serial.println("Sending " + message);
-    lastSendTime = millis();         // timestamp the message
-    interval = random(1000) + 4000;  // 2-3 seconds
+    lastSendTime = millis();            // timestamp the message
+    interval = random(2000) + 3000;    // 2-3 seconds
   }
 
   // parse for a packet, and call onReceive with the result:
@@ -125,8 +114,46 @@ void onReceive(int packetSize) {
   Serial.println();
 }
 
-void analizarTrama() {
-  if (tramaGPS[0] == '$' && tramaGPS[1] == 'G' && tramaGPS[2] == 'N' && tramaGPS[3] == 'R' && tramaGPS[4] == 'M' && tramaGPS[5] == 'C') {
-    trama_a_enviar = tramaGPS;
+String analizarTrama() {
+  String nmeaSentence;
+  String jsonStr = "";
+  if (gps.available() > 0) {
+    while (jsonStr == "") {
+      nmeaSentence = gps.readStringUntil('\n');  // Read NMEA sentence from serial
+      // Check if the sentence starts with "$GNRMC"
+      if (nmeaSentence.startsWith("$GNRMC")) {
+        DynamicJsonDocument doc(200);  // Create a JSON document
+
+        // Extracting data from GNRMC sentence
+        String parts[13];  // GNRMC sentence has 13 comma-separated parts
+        int i = 0;
+        char *part = strtok(&nmeaSentence[0], ",");  // Tokenize the sentence
+        while (part != NULL) {
+          parts[i++] = String(part);
+          part = strtok(NULL, ",");
+        }
+
+        // Construct JSON object
+        /*
+      doc["type"] = "GNRMC";
+      doc["time"] = parts[1];
+      doc["status"] = parts[2];
+      */
+        doc["latitude"] = parts[3];
+        doc["longitude"] = parts[5];
+        /*
+      doc["speed"] = parts[7];
+      doc["course"] = parts[8];
+      doc["date"] = parts[9];
+      doc["magnetic_variation"] = parts[10];
+      doc["variation_direction"] = parts[11];
+      doc["mode"] = parts[12];
+      */
+
+        // Serialize JSON to a string
+        serializeJson(doc, jsonStr);
+        return jsonStr;
+      }
+    }
   }
 }

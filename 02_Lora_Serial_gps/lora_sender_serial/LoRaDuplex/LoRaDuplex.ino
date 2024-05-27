@@ -37,14 +37,10 @@ void setup() {
 }
 
 void loop() {
-  // if (millis() - lastSendTime > interval) {
   if (stringComplete) {
-    // String message   = "HeLoRa World!";   // send a message
     stringComplete = false;
     sendMessage(message);
     Serial.println("Sending: " + message);
-    // lastSendTime = millis();            // timestamp the message
-    // interval = random(2000) + 3000;    // 2-3 seconds
   }
 
   // parse for a packet, and call onReceive with the result:
