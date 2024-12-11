@@ -1,0 +1,276 @@
+[
+    {
+        "id": "144ef3a09ef67955",
+        "type": "ui_button",
+        "z": "e4bf0fa75d4b85be",
+        "name": "Abajo",
+        "group": "60c8ab523975bc17",
+        "order": 9,
+        "width": 2,
+        "height": 1,
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "expand_more",
+        "payload": "<abajo>",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 270,
+        "y": 100,
+        "wires": [
+            [
+                "01067069ccff42e3"
+            ]
+        ]
+    },
+    {
+        "id": "2fa08ae2d8a5b684",
+        "type": "ui_button",
+        "z": "e4bf0fa75d4b85be",
+        "name": "Muestra",
+        "group": "60c8ab523975bc17",
+        "order": 5,
+        "width": 2,
+        "height": 1,
+        "passthru": false,
+        "label": "Muestra",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "<muestra>",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 280,
+        "y": 280,
+        "wires": [
+            [
+                "01067069ccff42e3"
+            ]
+        ]
+    },
+    {
+        "id": "dcf98f954a4e3a28",
+        "type": "ui_button",
+        "z": "e4bf0fa75d4b85be",
+        "name": "Arriba",
+        "group": "60c8ab523975bc17",
+        "order": 2,
+        "width": 2,
+        "height": 1,
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "expand_less",
+        "payload": "<arriba>",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 270,
+        "y": 40,
+        "wires": [
+            [
+                "01067069ccff42e3"
+            ]
+        ]
+    },
+    {
+        "id": "9af7fc3065e8f9bf",
+        "type": "ui_button",
+        "z": "e4bf0fa75d4b85be",
+        "name": "Derecha",
+        "group": "60c8ab523975bc17",
+        "order": 7,
+        "width": 2,
+        "height": 1,
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "chevron_right",
+        "payload": "<derecha>",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 280,
+        "y": 220,
+        "wires": [
+            [
+                "01067069ccff42e3"
+            ]
+        ]
+    },
+    {
+        "id": "32405345a4db2ffd",
+        "type": "ui_button",
+        "z": "e4bf0fa75d4b85be",
+        "name": "Izquierda",
+        "group": "60c8ab523975bc17",
+        "order": 4,
+        "width": 2,
+        "height": 1,
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "chevron_left",
+        "payload": "<izquierda>",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 280,
+        "y": 160,
+        "wires": [
+            [
+                "01067069ccff42e3"
+            ]
+        ]
+    },
+    {
+        "id": "6f0fcd65abc2c991",
+        "type": "debug",
+        "z": "e4bf0fa75d4b85be",
+        "name": "debug 5",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 490,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "d2cb3ae1f3d822af",
+        "type": "serial in",
+        "z": "e4bf0fa75d4b85be",
+        "name": "Debug Serial In",
+        "serial": "9026e3cc4ea73dfe",
+        "x": 300,
+        "y": 400,
+        "wires": [
+            [
+                "6f0fcd65abc2c991"
+            ]
+        ]
+    },
+    {
+        "id": "01067069ccff42e3",
+        "type": "serial out",
+        "z": "e4bf0fa75d4b85be",
+        "name": "Enviar a Arduino",
+        "serial": "9026e3cc4ea73dfe",
+        "x": 540,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "f09587a4b21ae74b",
+        "type": "ui_button",
+        "z": "e4bf0fa75d4b85be",
+        "name": "Stop",
+        "group": "60c8ab523975bc17",
+        "order": 6,
+        "width": 2,
+        "height": 1,
+        "passthru": false,
+        "label": "Stop",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "<stop>",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 270,
+        "y": 340,
+        "wires": [
+            [
+                "01067069ccff42e3"
+            ]
+        ]
+    },
+    {
+        "id": "3f3587af2b07d63e",
+        "type": "remote-access",
+        "z": "e4bf0fa75d4b85be",
+        "confignode": "57db481bcc505198",
+        "name": "",
+        "verbose": 0,
+        "x": 300,
+        "y": 460,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "60c8ab523975bc17",
+        "type": "ui_group",
+        "name": "Control",
+        "tab": "6aea0286be8ae6b0",
+        "order": 1,
+        "disp": true,
+        "width": 8,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "9026e3cc4ea73dfe",
+        "type": "serial-port",
+        "name": "UB3_0-Arduino",
+        "serialport": "COM4",
+        "serialbaud": "9600",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "waitfor": "",
+        "dtr": "none",
+        "rts": "none",
+        "cts": "none",
+        "dsr": "none",
+        "newline": "\\n",
+        "bin": "false",
+        "out": "char",
+        "addchar": "",
+        "responsetimeout": "10000"
+    },
+    {
+        "id": "57db481bcc505198",
+        "type": "remote-config",
+        "name": "Node-RED UI Investigacion",
+        "host": "localhost",
+        "protocol": "http",
+        "port": "1880",
+        "baseurl": "/ui",
+        "instancehash": "aitb5sq9ynzmf7izv4a1n5hwqyam2sdlpqgjt5dm66dhsblij9m6orfqxy1hlnjn",
+        "server": "nodered02.remote-red.com",
+        "region": "us"
+    },
+    {
+        "id": "6aea0286be8ae6b0",
+        "type": "ui_tab",
+        "name": "Control Barco",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    }
+]

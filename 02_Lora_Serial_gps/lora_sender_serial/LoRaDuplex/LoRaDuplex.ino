@@ -101,9 +101,11 @@ void serialEvent() {
     if (inChar != '\n') {
     inputString += inChar;
     }
-    if (inChar == '\n') {
+    // Caracter ; indica el fin de linea. Modificar aca y en nodered si se modifica
+    if (inChar == ';') {
       stringComplete = true;
       message = inputString;
+      Serial.println(message);
       inputString = "";
     }
   }
